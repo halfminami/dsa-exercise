@@ -3,7 +3,7 @@ package flow
 import (
 	. "example/util/graph"
 	internal "example/util/graph/internal"
-	u "example/util/graph/undirected"
+	"example/util/graph/undirected"
 )
 
 type (
@@ -16,15 +16,17 @@ type FlowNetwork interface {
 	Flow(Id, Id) Flow
 	Residual(Id, Id) Flow
 	Send(Id, Id, Flow)
+
+	Graph
 }
 
 type flowNetwork struct {
-	flow  []map[Id]Flow
-	graph Graph
+	flow []map[Id]Flow
+	Graph
 }
 
 func (fn flowNetwork) Flow(x, y Id) Flow     { return fn.flow[x][y] }
-func (fn flowNetwork) Cap(x, y Id) Capacity  { return Capacity(fn.graph.Weight(x, y)) }
+func (fn flowNetwork) Cap(x, y Id) Capacity  { return Capacity(fn.Weight(x, y)) }
 func (fn flowNetwork) Residual(x, y Id) Flow { return Flow(fn.Cap(x, y)) - fn.flow[x][y] }
 
 // please don't send too much
@@ -35,6 +37,6 @@ func (fn flowNetwork) Send(x, y Id, f Flow) {
 
 func BuildFlowNetwork(size uint, edges []Edge) FlowNetwork {
 	flow := internal.MakeAdjacencyMap[Flow, Id](size)
-	graph := u.BuildUndirectedGraph(size, edges)
+	graph := undirected.BuildGraph(size, edges)
 	return flowNetwork{flow, graph}
 }

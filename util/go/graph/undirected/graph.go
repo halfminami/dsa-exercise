@@ -28,7 +28,7 @@ func (g undirectedGraph) Weight(a, b Id) Weight {
 
 // input is undirected simple graph
 // this constructs undirected graph
-func BuildUndirectedGraph(size uint, edges []Edge) Graph {
+func BuildGraph(size uint, edges []Edge) Graph {
 	adjacent := internal.MakeAdjacencyList[Id](size)
 	for _, edge := range edges {
 		adjacent[edge.X] = append(adjacent[edge.X], edge.Y)
@@ -44,7 +44,7 @@ func BuildUndirectedGraph(size uint, edges []Edge) Graph {
 }
 
 // add a supernode that connects to set of vertices
-func SuperNodes(size uint, vertices []Id, newWeight Weight) (super Id, n uint, additional []Edge) {
+func SuperNode(size uint, vertices []Id, newWeight Weight) (super Id, n uint, additional []Edge) {
 	super = Id(size)
 	n = size + 1
 

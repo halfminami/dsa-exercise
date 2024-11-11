@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"example/util/graph"
-	u "example/util/graph/undirected"
+	"example/util/graph/undirected"
 	. "example/util/testutil"
 )
 
@@ -16,9 +16,9 @@ func pred(g graph.Graph) func(graph.Id, graph.Id) bool {
 func TestReachable(t *testing.T) {
 	var n uint = 5
 	edges := graph.Slice2Edge([][]int{{0, 1, 1}, {2, 1, 1}, {2, 3, 1}, {0, 4, 1}, {3, 4, 1}})
-	g := u.BuildUndirectedGraph(n, edges)
+	g := undirected.BuildGraph(n, edges)
 
-	path, ok := Bfs(0, 3, g, pred(g))
+	path, ok := bfs(0, 3, g, pred(g))
 
 	if !ok {
 		t.Fatal("path not found")
@@ -32,9 +32,9 @@ func TestReachable(t *testing.T) {
 func TestUnreachable(t *testing.T) {
 	var n uint = 5
 	edges := graph.Slice2Edge([][]int{{0, 1, 10}, {2, 1, 10}, {2, 3, 0}, {0, 4, 10}, {3, 4, 0}})
-	g := u.BuildUndirectedGraph(n, edges)
+	g := undirected.BuildGraph(n, edges)
 
-	path, ok := Bfs(0, 3, g, pred(g))
+	path, ok := bfs(0, 3, g, pred(g))
 
 	if ok {
 		t.Fatalf("path %v found", path)
@@ -44,9 +44,9 @@ func TestUnreachable(t *testing.T) {
 func TestCycle(t *testing.T) {
 	var n uint = 6
 	edges := graph.Slice2Edge([][]int{{0, 1, 1}, {1, 2, 1}, {1, 3, 1}, {2, 4, 1}, {3, 4, 1}, {4, 5, 1}})
-	g := u.BuildUndirectedGraph(n, edges)
+	g := undirected.BuildGraph(n, edges)
 
-	path, ok := Bfs(0, 5, g, pred(g))
+	path, ok := bfs(0, 5, g, pred(g))
 
 	if !ok {
 		t.Fatal("path not found")
@@ -60,9 +60,9 @@ func TestCycle(t *testing.T) {
 func TestSame(t *testing.T) {
 	var n uint = 2
 	edges := graph.Slice2Edge([][]int{{0, 1, 1}})
-	g := u.BuildUndirectedGraph(n, edges)
+	g := undirected.BuildGraph(n, edges)
 
-	path, ok := Bfs(0, 0, g, pred(g))
+	path, ok := bfs(0, 0, g, pred(g))
 
 	if !ok {
 		t.Fatal("path not found")

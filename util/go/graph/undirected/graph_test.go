@@ -20,25 +20,25 @@ func graphRun(t *testing.T, g Graph, n uint, neighbors [][]Id) {
 }
 
 func TestSmall(t *testing.T) {
-	g := BuildUndirectedGraph(2, Slice2Edge([][]int{{0, 1, 2}}))
+	g := BuildGraph(2, Slice2Edge([][]int{{0, 1, 2}}))
 
 	graphRun(t, g, 2, [][]Id{{1}, {0}})
 }
 
 func TestComplete(t *testing.T) {
-	g := BuildUndirectedGraph(4, Slice2Edge([][]int{{0, 1, 0}, {0, 2, 0}, {0, 3, 0}, {1, 2, 0}, {1, 3, 0}, {2, 3, 0}}))
+	g := BuildGraph(4, Slice2Edge([][]int{{0, 1, 0}, {0, 2, 0}, {0, 3, 0}, {1, 2, 0}, {1, 3, 0}, {2, 3, 0}}))
 
 	graphRun(t, g, 4, [][]Id{{1, 2, 3}, {0, 2, 3}, {0, 1, 3}, {0, 1, 2}})
 }
 
 func TestCompleteBipartite(t *testing.T) {
-	g := BuildUndirectedGraph(6, Slice2Edge([][]int{{3, 0, 0}, {4, 0, 0}, {0, 5, 0}, {3, 1, 0}, {1, 4, 0}, {1, 5, 0}, {3, 2, 0}, {2, 4, 0}, {2, 5, 0}}))
+	g := BuildGraph(6, Slice2Edge([][]int{{3, 0, 0}, {4, 0, 0}, {0, 5, 0}, {3, 1, 0}, {1, 4, 0}, {1, 5, 0}, {3, 2, 0}, {2, 4, 0}, {2, 5, 0}}))
 
 	graphRun(t, g, 6, [][]Id{{3, 4, 5}, {3, 4, 5}, {3, 4, 5}, {0, 1, 2}, {0, 1, 2}, {0, 1, 2}})
 }
 
 func TestNoEdge(t *testing.T) {
-	g := BuildUndirectedGraph(1, []Edge{})
+	g := BuildGraph(1, []Edge{})
 
 	graphRun(t, g, 1, [][]Id{{}})
 }

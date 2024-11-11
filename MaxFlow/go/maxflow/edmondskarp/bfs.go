@@ -3,7 +3,7 @@ package edmondskarp
 import "example/util/graph"
 
 // find path
-func Bfs(s, t graph.Id, g graph.Graph, ok func(graph.Id, graph.Id) bool) ([]graph.Id, bool) {
+func bfs(s, t graph.Id, g graph.Graph, ok func(graph.Id, graph.Id) bool) ([]graph.Id, bool) {
 	l := []graph.Id{s}
 	lvl := 0
 
