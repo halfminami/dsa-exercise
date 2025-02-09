@@ -7,23 +7,6 @@
 (provide make-graph
          (struct-out graph))
 
-(module+ util
-  (provide ->> -->))
-
-;; Clojure `->` thread macro!
-(define-syntax -->
-  (syntax-rules ()
-    [(--> init) init]
-    [(--> acc (f args ...) rst ...) (--> (f acc args ...) rst ...)]
-    [(--> acc f rst ...) (--> (f acc) rst ...)]))
-
-;; `->>` thread last
-(define-syntax ->>
-  (syntax-rules ()
-    [(->> init) init]
-    [(->> acc (f args ...) rst ...) (->> (f args ... acc) rst ...)]
-    [(->> acc f rst ...) (->> (f acc) rst ...)]))
-
 (struct graph (vertices adjacency-list) #:transparent)
 
 ;; `arcs` is list of list
