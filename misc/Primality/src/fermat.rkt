@@ -8,7 +8,7 @@
 
 ;; but the code is only implementation and has little to do with the book IMO
 
-(require "../../util/racket/thread.rkt")
+(require "../../../util/racket/macros.rkt")
 
 (provide prime?)
 

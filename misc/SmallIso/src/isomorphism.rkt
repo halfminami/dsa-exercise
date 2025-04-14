@@ -1,7 +1,7 @@
 #lang racket/base
 
 (require "graph.rkt"
-         "../../../util/racket/thread.rkt"
+         "../../../util/racket/macros.rkt"
          racket/set
          racket/list)
 
