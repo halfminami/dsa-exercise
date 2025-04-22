@@ -116,7 +116,7 @@
          (let* ([sub (substring str 1)]
                 [d (string->number sub)])
            (and d                                     ; parsed
-                (positive? d)                         ; shoould be greater than 0
+                (positive? d)                         ; should be greater than 0
                 (not (char=? #\0 (string-ref sub 0))) ; no leading zero
                 ))))
   
