@@ -1,6 +1,6 @@
 GO_DIRS = MaxFlow/go util/go
 RACKET_DIRS = util/racket misc/SmallIso misc/Primality 
-UIUA_FILES = misc/FFT/src/lib.ua
+UIUA_FILES = misc/FFT/src/lib.ua misc/Matrix/src/lib.ua
 ELIXIR_DIRS = Treap/elixir
 
 test-go : $(GO_DIRS)
@@ -12,10 +12,12 @@ $(GO_DIRS) :
 test-racket : $(RACKET_DIRS)
 	raco test $^
 
+
 test-elixir : $(ELIXIR_DIRS)
 
 $(ELIXIR_DIRS) :
 	cd $@ && mix test
+
 
 test-uiua : $(UIUA_FILES)
 
